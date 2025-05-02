@@ -45,6 +45,9 @@ defmodule BoogalooWeb.Router do
     auth_routes AuthController, Boogaloo.Accounts.User, path: "/auth"
     sign_out_route AuthController
 
+    # Blog LiveView index
+    live "/blogs", BlogLive.BlogIndex
+
     # Remove these if you'd like to use your own authentication views
     sign_in_route register_path: "/register",
                   reset_path: "/reset",

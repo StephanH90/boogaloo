@@ -1,4 +1,9 @@
 defmodule Boogaloo.Accounts.User do
+  @moduledoc """
+  Ash resource representing a user, with authentication and relationships to blogs.
+  """
+  alias Boogaloo.Blogs.Blog
+
   use Ash.Resource,
     otp_app: :boogaloo,
     domain: Boogaloo.Accounts,
@@ -251,6 +256,10 @@ defmodule Boogaloo.Accounts.User do
     end
 
     attribute :confirmed_at, :utc_datetime_usec
+  end
+
+  relationships do
+    has_many :blogs, Blog
   end
 
   identities do
