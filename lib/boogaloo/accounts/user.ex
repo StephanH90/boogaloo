@@ -238,7 +238,7 @@ defmodule Boogaloo.Accounts.User do
     end
 
     policy always() do
-      forbid_if always()
+      authorize_if always()
     end
   end
 

@@ -7,6 +7,9 @@ defmodule Boogaloo.Accounts do
 
   resources do
     resource Boogaloo.Accounts.Token
-    resource Boogaloo.Accounts.User
+
+    resource Boogaloo.Accounts.User do
+      define :list_users, action: :read
+    end
   end
 end

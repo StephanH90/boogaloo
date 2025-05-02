@@ -46,7 +46,9 @@ defmodule BoogalooWeb.Router do
     sign_out_route AuthController
 
     # Blog LiveView index
-    live "/blogs", BlogLive.BlogIndex
+    live "/blogs", BlogLive.BlogIndex, :index
+    live "/blogs/:id", BlogLive.Show, :show
+    live "/blogs/:id/edit", BlogLive.Edit, :edit
 
     # Remove these if you'd like to use your own authentication views
     sign_in_route register_path: "/register",

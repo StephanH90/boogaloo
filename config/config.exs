@@ -50,7 +50,7 @@ config :spark,
 config :boogaloo,
   ecto_repos: [Boogaloo.Repo],
   generators: [timestamp_type: :utc_datetime],
-  ash_domains: [Boogaloo.Accounts]
+  ash_domains: [Boogaloo.Accounts, Boogaloo.Blogs]
 
 # Configures the endpoint
 config :boogaloo, BoogalooWeb.Endpoint,

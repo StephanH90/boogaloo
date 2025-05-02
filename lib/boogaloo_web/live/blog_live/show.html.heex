@@ -1,0 +1,34 @@
+<.header>
+  Blog {@blog.title}
+  <:subtitle>Viewing blog details</:subtitle>
+  <:actions>
+    <.link patch={~p"/blogs/#{@blog.id}/edit"} class="btn btn-primary">
+      Edit
+    </.link>
+  </:actions>
+</.header>
+
+<div class="bg-white shadow-sm mt-4 p-4 rounded-lg">
+  <dl class="space-y-4">
+    <div>
+      <dt class="font-semibold">Title</dt>
+      <dd>{@blog.title}</dd>
+    </div>
+
+    <div>
+      <dt class="font-semibold">Content</dt>
+      <dd>{@blog.body}</dd>
+    </div>
+
+    <div>
+      <dt class="font-semibold">Published Date</dt>
+      <dd>{@blog.published_at}</dd>
+    </div>
+  </dl>
+</div>
+
+<div class="mt-4">
+  <.link navigate={~p"/blogs"} class="btn btn-secondary">
+    ← Back to Blogs
+  </.link>
+</div>

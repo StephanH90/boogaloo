@@ -14,6 +14,11 @@ defmodule Boogaloo.Blogs.Blog do
     repo Boogaloo.Repo
   end
 
+  # Actions
+  actions do
+    defaults [:read]
+  end
+
   # Attributes
   attributes do
     uuid_primary_key :id
@@ -23,11 +28,6 @@ defmodule Boogaloo.Blogs.Blog do
     attribute :user_id, :uuid, allow_nil?: false
     create_timestamp :inserted_at
     update_timestamp :updated_at
-  end
-
-  # Actions
-  actions do
-    defaults [:read]
   end
 
   relationships do
