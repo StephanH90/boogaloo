@@ -17,6 +17,10 @@ defmodule Boogaloo.Blogs.Blog do
   # Actions
   actions do
     defaults [:read]
+
+    update :update_rating do
+      accept [:rating]
+    end
   end
 
   # Attributes
@@ -26,6 +30,13 @@ defmodule Boogaloo.Blogs.Blog do
     attribute :body, :string, allow_nil?: false
     attribute :published_at, :utc_datetime
     attribute :user_id, :uuid, allow_nil?: false
+
+    attribute :rating, :integer do
+      constraints min: 1, max: 5
+      allow_nil? false
+      default 3
+    end
+
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

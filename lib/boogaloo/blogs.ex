@@ -7,7 +7,8 @@ defmodule Boogaloo.Blogs do
   resources do
     resource Boogaloo.Blogs.Blog do
       define :list_blogs, action: :read
-      define :get_blog!, action: :read, get_by: [:id]
+      define :get_blog, action: :read, get_by: [:id]
+      define :update_rating, action: :update_rating, args: [:rating]
     end
   end
 end

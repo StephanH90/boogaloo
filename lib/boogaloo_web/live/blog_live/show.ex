@@ -9,7 +9,7 @@ defmodule BoogalooWeb.BlogLive.Show do
 
   @impl true
   def handle_params(%{"id" => id}, _, socket) do
-    blog = Blogs.get_blog!(id)
+    blog = Blogs.get_blog!(id) |> dbg()
 
     {:noreply,
      socket
