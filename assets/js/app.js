@@ -21,6 +21,7 @@ import "phoenix_html";
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar";
+import "../node_modules/preline/dist/preline.js";
 
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
@@ -51,4 +52,20 @@ window.addEventListener("phx:page-loading-stop", () => {
   window.HSStaticMethods?.autoInit();
   console.log("🦠 'page loading stop':", "page loading stop");
   console.log("🦠 window.HSStaticMethods:", window.HSStaticMethods);
+});
+
+// This re-initialises preline if required
+new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.type === "childList") {
+      mutation.addedNodes.forEach((node) => {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+          window.HSStaticMethods?.autoInit();
+        }
+      });
+    }
+  });
+}).observe(document.body, {
+  childList: true,
+  subtree: true,
 });
