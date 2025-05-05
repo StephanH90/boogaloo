@@ -1,6 +1,16 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-@import "../node_modules/preline/variants.css"
+@import "tailwindcss";
+@source "../node_modules/preline"; /* this is required for tailwind to pick up all .css classes for preline in the node modules folder */
+@import "../node_modules/preline/variants.css";
 
 /* This file is for your main application CSS */
+
+/* Adds pointer cursor to buttons */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* Defaults hover styles on all devices */
+@custom-variant hover (&:hover);

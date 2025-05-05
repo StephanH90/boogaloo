@@ -23,12 +23,22 @@ import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar";
 import "../node_modules/preline/dist/preline.js";
 
+const Hooks = {
+  "hs:dropdown": {
+    mounted() {
+      // Required so new preline elements that are added to the dom by liveview work
+      window.HSDropdown.autoInit();
+    },
+  },
+};
+
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: { _csrf_token: csrfToken },
+  hooks: Hooks,
 });
 
 // Show progress bar on live navigation and form submits
@@ -45,27 +55,7 @@ liveSocket.connect();
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket;
 
-import * as preline from "preline/dist/preline"; // registers Web Components & helpers
-console.log("🦠 preline:", preline);
 // auto-initialise when LiveView patches the DOM
 window.addEventListener("phx:page-loading-stop", () => {
   window.HSStaticMethods?.autoInit();
-  console.log("🦠 'page loading stop':", "page loading stop");
-  console.log("🦠 window.HSStaticMethods:", window.HSStaticMethods);
-});
-
-// This re-initialises preline if required
-new MutationObserver((mutations) => {
-  mutations.forEach((mutation) => {
-    if (mutation.type === "childList") {
-      mutation.addedNodes.forEach((node) => {
-        if (node.nodeType === Node.ELEMENT_NODE) {
-          window.HSStaticMethods?.autoInit();
-        }
-      });
-    }
-  });
-}).observe(document.body, {
-  childList: true,
-  subtree: true,
 });

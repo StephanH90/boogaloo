@@ -31,78 +31,67 @@ defmodule BoogalooWeb.BlogLive.BlogIndex do
     ~H"""
     <h1>Blogs</h1>
 
-    <button phx-click="toggle-shown">Toggle ({@shown})</button>
+    <button
+      type="button"
+      class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+      aria-haspopup="dialog"
+      aria-expanded="false"
+      aria-controls="hs-offcanvas-example"
+      data-hs-overlay="#hs-offcanvas-example"
+    >
+      Open offcanvas
+    </button>
 
-    <BoogalooWeb.Components.dropdown :if={@shown} label="foo">
+    <div
+      id="hs-offcanvas-example"
+      class="hs-overlay hs-overlay-open:translate-x-0 hidden -translate-x-full fixed top-0 start-0 transition-all duration-300 transform h-full max-w-xs w-full z-80 bg-white border-e border-gray-200"
+      role="dialog"
+      tabindex="-1"
+      aria-labelledby="hs-offcanvas-example-label"
+    >
+      <div class="flex justify-between items-center py-3 px-4 border-b border-gray-200">
+        <h3 id="hs-offcanvas-example-label" class="font-bold text-gray-800">
+          Offcanvas title
+        </h3>
+        <button
+          type="button"
+          class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
+          aria-label="Close"
+          data-hs-overlay="#hs-offcanvas-example"
+        >
+          <span class="sr-only">Close</span>
+          <svg
+            class="shrink-0 size-4"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="p-4">
+        <p class="text-gray-800">
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+        </p>
+      </div>
+    </div>
+
+    <button phx-click="toggle-shown" class="px-4 py-2 border-2 border-teal-200 bg-teal-100 rounded-lg">
+      toggle
+    </button>
+
+    <BoogalooWeb.Components.dropdown :if={@shown} label="foo" id="test-dropdown">
       <:option>foo</:option>
       <:option><.link patch={~p"/blogs"}>Blogs</.link></:option>
     </BoogalooWeb.Components.dropdown>
-
-    <%!-- <div id="dropdown-test" class="hs-dropdown relative inline-flex">
-      <button
-        id="hs-dropdown-default"
-        type="button"
-        class="hs-dropdown-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-        aria-haspopup="menu"
-        aria-expanded="false"
-        aria-label="Dropdown"
-      >
-        Actions
-        <svg
-          class="hs-dropdown-open:rotate-180 size-4"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="m6 9 6 6 6-6" />
-        </svg>
-      </button>
-
-      <div
-        class="z-10 hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 hidden min-w-60 bg-white shadow-md rounded-lg mt-2 after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full"
-        role="menu"
-        aria-orientation="vertical"
-        aria-labelledby="hs-dropdown-default"
-      >
-        <div class="p-1 space-y-0.5">
-          <a
-            class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100"
-            href="#"
-          >
-            Newsletter
-          </a>
-          <a
-            class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100"
-            href="#"
-          >
-            Purchases
-          </a>
-          <a
-            class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100"
-            href="#"
-          >
-            Downloads
-          </a>
-          <a
-            class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100"
-            href="#"
-          >
-            Team Account
-          </a>
-        </div>
-      </div>
-    </div> --%>
-
-    <%!-- <BoogalooWeb.Components.dropdown label="foo">
-      <:option>foo</:option>
-      <:option><.link patch={~p"/blogs"}>Blogs</.link></:option>
-    </BoogalooWeb.Components.dropdown> --%>
 
     <BoogalooWeb.Components.table id="blogs" rows={@blogs} striped?={true}>
       <:col :let={blog} label="Title"><.link patch={~p"/blogs/#{blog}"}>{blog.title}</.link></:col>
