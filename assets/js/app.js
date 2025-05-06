@@ -30,6 +30,22 @@ const Hooks = {
       window.HSDropdown.autoInit();
     },
   },
+  "hs:modal": {
+    mounted() {
+      window.HSOverlay.autoInit();
+      if (this.el.dataset.opened === "true") {
+        window.HSOverlay.open(this.el);
+      }
+      this.listener = window.addEventListener("hs:show-modal", (e) => {
+        if (this.el.id === e.detail.id.replace("#", "")) {
+          window.HSOverlay.open(this.el);
+        }
+      });
+    },
+    destroyed() {
+      window.removeEventListener(this.listener);
+    },
+  },
 };
 
 let csrfToken = document
@@ -50,7 +66,7 @@ window.addEventListener("phx:page-loading-stop", (_info) => topbar.hide());
 liveSocket.connect();
 
 // expose liveSocket on window for web console debug logs and latency simulation:
-// >> liveSocket.enableDebug()
+>> liveSocket.enableDebug()
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket;

@@ -88,7 +88,7 @@ defmodule BoogalooWeb do
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components
-      import BoogalooWeb.CoreComponents
+      import BoogalooWeb.CoreComponents, only: [header: 1, flash_group: 1]
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
