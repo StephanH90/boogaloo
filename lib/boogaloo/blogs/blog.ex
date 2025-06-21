@@ -7,6 +7,7 @@ defmodule Boogaloo.Blogs.Blog do
     domain: Boogaloo.Blogs
 
   alias Boogaloo.Accounts.User
+  alias Boogaloo.Calculations.TruncatedText
 
   # SQLite configuration
   sqlite do
@@ -43,5 +44,9 @@ defmodule Boogaloo.Blogs.Blog do
 
   relationships do
     belongs_to :user, User
+  end
+
+  calculations do
+    calculate :truncated_body, :string, TruncatedText
   end
 end

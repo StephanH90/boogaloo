@@ -24,33 +24,35 @@ password = "SecurePassword123!"
 {:ok, hashed_password} = AshAuthentication.BcryptProvider.hash(password)
 
 # Seed the user with the hashed password
-user = Ash.Seed.seed!(User, %{
-  email: email,
-  hashed_password: hashed_password
-})
+user =
+  Ash.Seed.seed!(User, %{
+    email: email,
+    hashed_password: hashed_password
+  })
 
 IO.puts("Example user created successfully with ID: #{user.id}")
 
 # Create a sample blog post associated with the user
 # Using Ash.Seed.seed! to bypass action requirements
-blog = Ash.Seed.seed!(Blog, %{
-  title: "Getting Started with Context7",
-  body: """
-  # Introduction to Context7
-  
-  Context7 is a powerful tool for providing up-to-date documentation for LLMs and AI code editors.
-  
-  This blog post demonstrates how to integrate Context7 with your Elixir application.
-  
-  ## Key Features
-  
-  - Contextual documentation
-  - AI-friendly interfaces
-  - Easy integration with existing codebases
-  """,
-  user_id: user.id,
-  published_at: DateTime.utc_now()
-})
+blog =
+  Ash.Seed.seed!(Blog, %{
+    title: "Getting Started with Context7",
+    body: """
+    # Introduction to Context7
+
+    Context7 is a powerful tool for providing up-to-date documentation for LLMs and AI code editors.
+
+    This blog post demonstrates how to integrate Context7 with your Elixir application.
+
+    ## Key Features
+
+    - Contextual documentation
+    - AI-friendly interfaces
+    - Easy integration with existing codebases
+    """,
+    user_id: user.id,
+    published_at: DateTime.utc_now()
+  })
 
 IO.puts("Blog post created successfully with ID: #{blog.id}")
 

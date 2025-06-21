@@ -44,7 +44,7 @@ defmodule Boogaloo.MixProject do
       {:ash_sqlite, "~> 0.2"},
       {:ash_phoenix, "~> 2.0"},
       {:ash, "~> 3.0"},
-      {:igniter, "~> 0.5", only: [:dev, :test]},
+      {:igniter, "~> 0.6", only: [:dev, :test]},
       {:phoenix, "~> 1.7.21"},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.10"},
@@ -70,7 +70,8 @@ defmodule Boogaloo.MixProject do
       {:gettext, "~> 0.26"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:ex_uikit, path: "../ex_uikit"}
     ]
   end
 
