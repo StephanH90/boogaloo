@@ -21,32 +21,22 @@ import "phoenix_html";
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar";
-import "../node_modules/preline/dist/preline.js";
 
 const Hooks = {
-  "hs:dropdown": {
-    mounted() {
-      // Required so new preline elements that are added to the dom by liveview work
-      window.HSDropdown.autoInit();
+  EmbeddedEmber: {
+    mounted () {
+      console.log("EmbeddedEmber mounted");
     },
-  },
-  "hs:modal": {
-    mounted() {
-      window.HSOverlay.autoInit();
-      if (this.el.dataset.opened === "true") {
-        window.HSOverlay.open(this.el);
-      }
-      this.listener = window.addEventListener("hs:show-modal", (e) => {
-        if (this.el.id === e.detail.id.replace("#", "")) {
-          window.HSOverlay.open(this.el);
-        }
-      });
-    },
-    destroyed() {
-      window.removeEventListener(this.listener);
-    },
-  },
+    destroyed () {
+      console.log("EmbeddedEmber has been destroyed");
+      // document.querySelector("#ember-container").remove()
+    }
+  }
 };
+
+document.addEventListener('uikit:init', () => {
+   console.log("fooo"); // do something
+})
 
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")

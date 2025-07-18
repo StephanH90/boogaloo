@@ -1,8 +1,8 @@
 defmodule BoogalooWeb.BlogLive.BlogIndex do
   use BoogalooWeb, :live_view
   alias Boogaloo.Blogs
+  alias ExUikit.Components
   import BoogalooWeb.Components, only: [button: 1]
-
   @impl true
   def mount(_params, _session, socket) do
     blogs = Blogs.list_blogs!(load: [:user, :truncated_body])
@@ -37,20 +37,42 @@ defmodule BoogalooWeb.BlogLive.BlogIndex do
   @impl true
   def render(assigns) do
     ~H"""
-    <h1 class="text-4xl dark:text-white mb-8">Blogs</h1>
+    <a href={~p"/embedded-ember"}>
+    <Components.button style="primary" class="uk-margin-bottom uk-margin-top">Go to the ember app</Components.button>
+    </a>
+    <Components.grid  class="uk-child-width-expand@s">
+    <Components.card>
+      <:header>foo</:header>
+      <:body>this is the body</:body>
+      <:footer>this is the footer</:footer>
+    </Components.card>
 
-    <BoogalooWeb.CoreComponents.icon name="hero-x-mark-solid" />
 
-    <%!-- <.live_component module={BoogalooWeb.Components.Live.Foo} id="test" /> --%>
-    <BoogalooWeb.Components.Live.Foo.foo clicked={@foo} />
+    <Components.card>
+      <:body>
+        <Components.button_group>
+          <Components.button style="primary">Foo</Components.button>
+          <Components.button style="secondary">Bar</Components.button>
+        </Components.button_group>
 
-    <.button phx-click="sort" class="my-4">trigger</.button>
+      </:body>
+    </Components.card>
 
-    <.button phx-click="direct-mutation" class="my-4">direct mutation</.button>
 
-    <div class="grid grid-cols-3 gap-4">
-      <.blog_card :for={blog <- @blogs} blog={blog} />
+
+    <Components.card>
+      <:body>
+
+      <div class="uk-inline">
+    <button class="uk-button uk-button-default" type="button">Click</button>
+    <div id="dropdown" uk-dropdown="mode: click">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
     </div>
+
+          </:body>
+    </Components.card>
+
+    </Components.grid>
+
     """
   end
 

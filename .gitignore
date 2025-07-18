@@ -39,3 +39,21 @@ npm-debug.log
 *.db
 *.db-*
 
+# compiled output
+/assets/embedded-ember/dist/
+/assets/embedded-ember/declarations/
+
+# dependencies
+/assets/embedded-ember/node_modules/
+
+# misc
+/assets/embedded-ember/.env*
+/assets/embedded-ember/.pnp*
+/assets/embedded-ember/.eslintcache
+/assets/embedded-ember/coverage/
+/assets/embedded-ember/npm-debug.log*
+/assets/embedded-ember/testem.log
+/assets/embedded-ember/yarn-error.log
+
+# broccoli-debug
+/assets/embedded-ember//DEBUG/

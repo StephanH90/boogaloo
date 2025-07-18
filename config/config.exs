@@ -83,21 +83,28 @@ config :esbuild,
   ]
 
 # Configure tailwind (the version is required)
-config :tailwind,
-  version: "4.1.5",
-  version_check: true,
-  boogaloo: [
-    args: ~w(
-      --input=assets/css/app.css
-      --output=priv/static/assets/app.css
-    ),
-    cd: Path.expand("..", __DIR__)
-  ]
+# config :tailwind,
+#   version: "4.1.5",
+#   version_check: true,
+#   boogaloo: [
+#     args: ~w(
+#       --input=assets/css/app.css
+#       --output=priv/static/assets/app.css
+#     ),
+#     cd: Path.expand("..", __DIR__)
+#   ]
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
+
+config :dart_sass,
+  version: "1.61.0",
+  default: [
+    args: ~w(css/app.scss ../priv/static/assets/app.css),
+    cd: Path.expand("../assets", __DIR__)
+  ]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

@@ -22,8 +22,8 @@ config :boogaloo, BoogalooWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "zQ75K773A+RTBeaeZTZ26esVwnVv4Osv7/NyPnKzcOnJATEuLGBPTpFLMajCAQwE",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:boogaloo, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:boogaloo, ~w(--watch)]}
+    esbuild: {Esbuild, :install_and_run, [:boogaloo, ~w(--sourcemap=inline --watch)]}
+    # tailwind: {Tailwind, :install_and_run, [:boogaloo, ~w(--watch)]}
   ]
 
 # ## SSL Support
@@ -51,6 +51,7 @@ config :boogaloo, BoogalooWeb.Endpoint,
 
 # Watch static and templates for browser reloading.
 config :boogaloo, BoogalooWeb.Endpoint,
+  reloadable_apps: [:boogaloo, :ex_uikit],
   live_reload: [
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",

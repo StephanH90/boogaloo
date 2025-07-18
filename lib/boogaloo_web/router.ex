@@ -50,6 +50,8 @@ defmodule BoogalooWeb.Router do
     live "/blogs/:id", BlogLive.Show, :show
     live "/blogs/:id/edit", BlogLive.Edit, :edit
 
+    live "/embedded-ember", EmbeddedEmber
+
     # Remove these if you'd like to use your own authentication views
     sign_in_route register_path: "/register",
                   reset_path: "/reset",

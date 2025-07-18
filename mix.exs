@@ -33,6 +33,7 @@ defmodule Boogaloo.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:dart_sass, "~> 0.7", runtime: false},
       {:tidewave, "~> 0.1", only: [:dev]},
       {:bcrypt_elixir, "~> 3.0"},
       {:picosat_elixir, "~> 0.2"},
@@ -52,10 +53,10 @@ defmodule Boogaloo.MixProject do
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 1.0"},
-      {:floki, ">= 0.30.0", only: :test},
+      {:floki, ">= 0.30.0"},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
+      # {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
       {:heroicons,
        github: "tailwindlabs/heroicons",
        tag: "v2.2.0",
@@ -87,10 +88,11 @@ defmodule Boogaloo.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ash.setup --quiet", "test"],
-      "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind boogaloo", "esbuild boogaloo"],
+      "assets.setup": ["esbuild.install --if-missing"],
+      "assets.build": ["esbuild boogaloo"],
       "assets.deploy": [
-        "tailwind boogaloo --minify",
+        # "tailwind boogaloo --minify",
+        "sass default --no-source-map --style=compressed",
         "esbuild boogaloo --minify",
         "phx.digest"
       ],
