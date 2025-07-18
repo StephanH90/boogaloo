@@ -1,9 +1,10 @@
 {{page-title "EmbeddedEmber"}}
 <div id="ember-container">
-{{outlet}}
+  {{outlet}}
 
-<h1>test from ember</h1>
+  <h1>test from ember 123</h1>
 </div>
-{{! The following component displays Ember's default welcome message. }}
-{{! <WelcomePage /> }}
-{{! Feel free to remove this! }}
+
+<CfField::Hint @field={{this.field}} />
+
+<CfField::Errors @field={{this.field}} />

@@ -12,13 +12,15 @@ defmodule BoogalooWeb.EmbeddedEmber do
   @impl true
   def render(assigns) do
     ~H"""
-    <div>
+    <div >
       <a href={~p"/blogs/"} >Go to blogs</a>
       <div
         id="embedded-ember-container"
         data-live-view-routes={Enum.join(live_view_routes(), ",")}
         phx-update="ignore"
         phx-hook="EmbeddedEmber"
+        class="uk-container"
+        style="border: 1px solid red;"
       >
         <div id="ember-ebau-header">
           {raw(@header)}
